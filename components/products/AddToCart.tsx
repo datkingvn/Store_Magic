@@ -9,7 +9,7 @@ import {FaCartPlus} from "react-icons/fa";
 
 function AddToCart({item}: { item: OrderItem }) {
     const router = useRouter()
-    const {items, increase} = useCartService()
+    const {items, increase, decrease} = useCartService()
     const [existItem, setExistItem] = useState<OrderItem | undefined>()
 
     useEffect(() => {
@@ -22,7 +22,7 @@ function AddToCart({item}: { item: OrderItem }) {
 
     return existItem ? (
         <div className="join py-4">
-            <button className="join-item btn btn-sm px-2 border border-gray-300">
+            <button className="join-item btn btn-sm px-2 border border-gray-300" onClick={() => decrease(existItem)}>
                 <RiSubtractFill fontSize={20}/>
             </button>
             <button
