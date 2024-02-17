@@ -1,9 +1,6 @@
 import React from 'react';
 import CartDetails from "@/app/(frontend)/cart/CartDetails";
 
-export const metadata = {
-    title: "Shopping Cart"
-}
 const CartPage = () => {
     return (
         <div>

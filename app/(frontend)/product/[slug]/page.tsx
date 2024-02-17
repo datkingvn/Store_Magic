@@ -3,6 +3,18 @@ import data from "@/libs/data";
 import Link from "next/link"
 import {RiAddFill, RiCheckboxCircleFill, RiShieldCheckFill, RiSubtractFill} from "react-icons/ri"
 import AddToCart from "@/components/products/AddToCart";
+import productService from "@/libs/services/productServices";
+
+export async function generateMetadata({params}: { params: { slug: string } }) {
+    const product = await productService.getBySlug(params.slug);
+    if (!product) {
+        return {title: "Product Not Found!"};
+    }
+    return {
+        title: product.name,
+        description: product.description,
+    };
+}
 
 function ProductDetails({params}: { params: { slug: string } }) {
     const product = data.products.find((x) => x.slug === params.slug)
@@ -38,7 +50,8 @@ function ProductDetails({params}: { params: { slug: string } }) {
                             {product.brand}
                         </Link>
                     </p>
-                    <div className="pb-3 pt-1 text-sm text-gray-400">{product.countInStock > 0 ? "In Stock" : "Unavailable"}</div>
+                    <div
+                        className="pb-3 pt-1 text-sm text-gray-400">{product.countInStock > 0 ? "In Stock" : "Unavailable"}</div>
                     <div className="pt-1 flex items-center gap-3">
                         <strong className="text-2xl font-medium text-gray-800">${product.price.toFixed(2)}</strong>
                         <span
