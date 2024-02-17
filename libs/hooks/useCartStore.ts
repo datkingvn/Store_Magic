@@ -1,4 +1,5 @@
 import {create} from 'zustand';
+import { persist } from 'zustand/middleware';
 import {round2} from "@/libs/utils";
 import {OrderItem} from "@/libs/models/OrderModel";
 
@@ -18,7 +19,11 @@ const initialState: Cart = {
     totalPrice: 0,
 }
 
-export const cartStore = create<Cart>(() => initialState)
+export const cartStore = create<Cart>()(
+    persist(() => initialState, {
+        name: 'cartStore', // Tên để xác định nơi lưu trữ
+    })
+)
 
 export default function useCartService() {
     const {items, itemsPrice, taxPrice, shippingPrice, totalPrice} = cartStore()
@@ -53,8 +58,8 @@ export default function useCartService() {
 
             if (!exist) return
             const updatedCartItems = exist.qty === 1
-                ? items.filter((x: OrderItem) => x.slug !== item.slug) // Loại bỏ mục hàng có slug tương tự
-                : items.map((x) => item.slug ? {...exist, qty: exist.qty - 1} : x)
+                ? items.filter((x: OrderItem) => x.slug !== item.slug)
+                : items.map((x) => (x.slug === item.slug ? { ...exist, qty: exist.qty - 1 } : x));
 
             const {itemsPrice, shippingPrice, taxPrice, totalPrice} = calcPrice(updatedCartItems)
 
