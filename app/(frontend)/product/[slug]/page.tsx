@@ -2,6 +2,7 @@ import React from 'react';
 import data from "@/libs/data";
 import Link from "next/link"
 import {RiAddFill, RiCheckboxCircleFill, RiShieldCheckFill, RiSubtractFill} from "react-icons/ri"
+import AddToCart from "@/components/products/AddToCart";
 
 function ProductDetails({params}: { params: { slug: string } }) {
     const product = data.products.find((x) => x.slug === params.slug)
@@ -37,7 +38,7 @@ function ProductDetails({params}: { params: { slug: string } }) {
                             {product.brand}
                         </Link>
                     </p>
-                    <div className="pb-3 pt-1 text-sm text-gray-400">{product.countInStock} In Stock</div>
+                    <div className="pb-3 pt-1 text-sm text-gray-400">{product.countInStock > 0 ? "In Stock" : "Unavailable"}</div>
                     <div className="pt-1 flex items-center gap-3">
                         <strong className="text-2xl font-medium text-gray-800">${product.price.toFixed(2)}</strong>
                         <span
@@ -65,26 +66,7 @@ function ProductDetails({params}: { params: { slug: string } }) {
                     <div className="py-4 max-w-lg">
                         <p>{product.description}</p>
                     </div>
-                    <div className="join py-4">
-                        <button className="join-item btn btn-sm px-2 border border-gray-300">
-                            <RiAddFill fontSize={20}/>
-                        </button>
-                        <button
-                            className="btn btn-sm px-4 join-item pointer-events-none bg-white border border-gray-300">
-                            2
-                        </button>
-                        <button className="join-item btn btn-sm px-2 border border-gray-300">
-                            <RiSubtractFill fontSize={20}/>
-                        </button>
-                    </div>
-                    <div className="flex gap-3">
-                        <Link href="/cart" className="btn btn-secondary capitalize">
-                            Buy Now
-                        </Link>
-                        <Link href="/cart" className="btn btn-accent capitalize text-[#D6D7EF]">
-                            Add To Cart
-                        </Link>
-                    </div>
+                    <AddToCart item={{...product, qty: 0, color: '', size: ''}}/>
                     <div className="pt-4 flex items-center gap-3 text-sm text-gray-500">
                         <RiShieldCheckFill fontSize={22}/>
                         Safe and Secure Payments. Easy returns.
