@@ -90,7 +90,7 @@ export default function useCartService() {
         totalPrice
       })
     },
-    saveShippingAddrress: (shippingAddress: ShippingAddress) => {
+    saveShippingAddress: (shippingAddress: ShippingAddress) => {
       cartStore.setState({
         shippingAddress,
       })

@@ -9,7 +9,7 @@ import {GrFormNextLink} from "react-icons/gr";
 
 const Form = () => {
   const router = useRouter()
-  const { saveShippingAddrress, shippingAddress } = useCartService()
+  const { saveShippingAddress, shippingAddress } = useCartService()
   const {
     register,
     handleSubmit,
@@ -34,7 +34,7 @@ const Form = () => {
   }, [setValue, shippingAddress])
 
   const formSubmit: SubmitHandler<ShippingAddress> = async (form) => {
-    saveShippingAddrress(form)
+    saveShippingAddress(form)
     router.push('/payment')
   }
 
