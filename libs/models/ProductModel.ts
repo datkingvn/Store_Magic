@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 export type Product = {
     _id?: string
@@ -33,8 +33,14 @@ const productSchema = new mongoose.Schema(
         description: {type: String, required: true},
         isFeatured: {type: Boolean, default: false},
         banner: String,
-    }, {timestamps: true}
+    },
+    {
+        timestamps: true,
+    }
 )
 
-const ProductModel = mongoose.models.Product || mongoose.model('Product', productSchema)
+const ProductModel =
+    mongoose.models.Product || mongoose.model('Product', productSchema)
+
 export default ProductModel
+

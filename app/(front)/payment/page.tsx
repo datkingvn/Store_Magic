@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import Form from './Form'
 
 export const metadata: Metadata = {
-    title: 'Sign In - DPay.vn',
+  title: 'Payment Method',
 }
 
-export default async function SignIn() {
-    return <Form />
+export default async function PaymentPage() {
+  return <Form />
 }

@@ -1,8 +1,10 @@
-import data from "@/libs/data";
-import ProductItem from "@/components/products/ProductItem";
-import {Metadata} from "next";
-import productServices from "@/libs/services/productServices";
-import Link from "next/link";
+/* eslint-disable @next/next/no-img-element */
+import ProductItem from '@/components/products/ProductItem'
+import data from '@/libs/data'
+import productService from '@/libs/services/productService'
+import { convertDocToObj } from '@/libs/utils'
+import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
     title: process.env.NEXT_PUBLIC_APP_NAME || 'DPay.vn | The Best Of Your Choice',
@@ -11,9 +13,8 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-    const featuredProducts = await productServices.getFeatured()
-    const latestProducts = await productServices.getLatest()
-
+  const featuredProducts = await productService.getFeatured()
+  const latestProducts = await productService.getLatest()
     return (
         <div className="my-6">
             <h3 className="mb-4 text-4sm font-bold uppercase">Trending Products</h3>
