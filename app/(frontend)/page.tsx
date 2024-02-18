@@ -21,7 +21,7 @@ export default async function Home() {
                 {featuredProducts.map((product, index) => (
                     <Link
                         href={`/product/${product.slug}`}
-                        className="relative flex-1 block group rounded-lg overflow-hidden border border-gray-300"
+                        className="relative flex-1 block group rounded-lg overflow-hidden border border-gray-300 grayscale-effect"
                         key={product._id}
                     >
                         <img

@@ -27,3 +27,12 @@
         @apply h-[2.6rem] min-h-max;
     }
 }
+
+.grayscale-effect {
+    filter: grayscale(82%);
+    transition: filter 0.5s ease;
+}
+
+.grayscale-effect:hover {
+    filter: grayscale(0%);
+}
