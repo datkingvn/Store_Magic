@@ -4,9 +4,11 @@ import {signOut, useSession} from 'next-auth/react'
 import {FaChevronDown} from "react-icons/fa";
 import {IoIosLogOut} from "react-icons/io";
 import useCartService from "@/libs/hooks/useCartStore";
+import Link from "next/link";
+import { MdHistory } from "react-icons/md";
 
 const Menu = () => {
-  const { items } = useCartService()
+  const { items, init } = useCartService()
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     setMounted(true)
@@ -15,6 +17,7 @@ const Menu = () => {
   const { data: session } = useSession()
   const signoutHandler = () => {
     signOut({ callbackUrl: '/signin' })
+    init()
   };
 
   return (
@@ -56,6 +59,9 @@ const Menu = () => {
                   tabIndex={0}
                   className="menu dropdown-content z-[1] p-2 shadow bg-base-300 rounded-box w-40 absolute right-0 mt-1"
               >
+                <li>
+                  <Link href='/order-history'><MdHistory style={{ fontSize: "14px" }} /> Order History</Link>
+                </li>
                 <li>
                   <button
                       type="button"
