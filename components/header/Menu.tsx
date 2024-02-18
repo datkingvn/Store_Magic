@@ -6,6 +6,7 @@ import {IoIosLogOut} from "react-icons/io";
 import useCartService from "@/libs/hooks/useCartStore";
 import Link from "next/link";
 import { MdHistory } from "react-icons/md";
+import { CiUser } from "react-icons/ci";
 
 const Menu = () => {
   const { items, init } = useCartService()
@@ -59,6 +60,9 @@ const Menu = () => {
                   tabIndex={0}
                   className="menu dropdown-content z-[1] p-2 shadow bg-base-300 rounded-box w-40 absolute right-0 mt-1"
               >
+                <li>
+                  <Link href='/profile'><CiUser style={{ fontSize: "14px" }} /> Profile</Link>
+                </li>
                 <li>
                   <Link href='/order-history'><MdHistory style={{ fontSize: "14px" }} /> Order History</Link>
                 </li>
